@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 class AppIconButton extends StatelessWidget {
   const AppIconButton({
     required this.icon,
@@ -16,21 +18,27 @@ class AppIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = Theme.of(context).colorScheme.onSurface;
+    final palette = AppPalette.of(context);
     return Semantics(
       button: true,
       label: label,
-      child: IconButton(
-        onPressed: onPressed,
-        tooltip: label,
-        icon: Icon(icon),
-        color: filled ? Theme.of(context).colorScheme.onPrimary : foreground,
-        style: IconButton.styleFrom(
-          minimumSize: const Size(48, 48),
-          backgroundColor: filled
-              ? Theme.of(context).colorScheme.primary
-              : Colors.transparent,
-          shape: const CircleBorder(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: filled ? palette.primary : palette.surface3,
+          shape: BoxShape.circle,
+          border: Border.all(color: palette.borderSubtle),
+          boxShadow: filled ? palette.primaryGlow : palette.raisedShadow,
+        ),
+        child: IconButton(
+          onPressed: onPressed,
+          tooltip: label,
+          icon: Icon(icon),
+          color: filled ? Colors.white : palette.textPrimary,
+          style: IconButton.styleFrom(
+            minimumSize: const Size(48, 48),
+            backgroundColor: Colors.transparent,
+            shape: const CircleBorder(),
+          ),
         ),
       ),
     );

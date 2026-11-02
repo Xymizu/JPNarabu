@@ -45,10 +45,12 @@ class _MyAppState extends State<MyApp> {
     return AnimatedBuilder(
       animation: _themeController,
       builder: (context, child) => MaterialApp(
-        title: 'JPNarabu',
+        title: 'RiLearn',
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         themeMode: _themeController.mode,
+        themeAnimationDuration: const Duration(milliseconds: 250),
+        themeAnimationCurve: Curves.easeOutCubic,
         initialRoute:
             _onboardingRepository.isCompleted ||
                 _store.settings.nickname != null

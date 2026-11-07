@@ -6,12 +6,52 @@ import 'core/theme/theme_controller.dart';
 import 'data/repositories/onboarding_repository.dart';
 import 'data/repositories/study_store.dart';
 import 'domain/models/card_models.dart' as models;
+import 'presentation/pages/splash_page.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final store = StudyStore();
-  await store.load();
-  runApp(MyApp(store: store));
+  runApp(const BootstrapApp());
+}
+
+class BootstrapApp extends StatefulWidget {
+  const BootstrapApp({super.key});
+
+  @override
+  State<BootstrapApp> createState() => _BootstrapAppState();
+}
+
+class _BootstrapAppState extends State<BootstrapApp> {
+  StudyStore? _store;
+
+  @override
+  void initState() {
+    super.initState();
+    _bootstrap();
+  }
+
+  Future<void> _bootstrap() async {
+    final store = StudyStore();
+    await Future.wait([
+      store.load(),
+      Future<void>.delayed(const Duration(milliseconds: 1000)),
+    ]);
+    if (!mounted) return;
+    setState(() => _store = store);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = _store;
+    if (store != null) return MyApp(store: store);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'RiLearn',
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: ThemeMode.system,
+      home: const SplashPage(),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {

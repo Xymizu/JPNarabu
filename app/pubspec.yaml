@@ -59,6 +59,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/logo/rilearn_logo.png
     - assets/data/kotoba-n5.csv
     - assets/data/kotoba-pelajaran-26-50.csv
     - assets/data/kanji-n5.csv
@@ -76,6 +77,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/PlusJakartaSans-Bold.ttf
           weight: 700
+    - family: NotoSerifJP
+      fonts:
+        - asset: assets/fonts/NotoSerifJP-Variable.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

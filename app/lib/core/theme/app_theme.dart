@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_fonts.dart';
+
 class AppPalette {
   const AppPalette({
     required this.dark,
@@ -169,7 +171,8 @@ abstract final class AppTheme {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: scheme,
-      fontFamily: 'PlusJakartaSans',
+      fontFamily: AppFonts.latin,
+      fontFamilyFallback: AppFonts.japaneseFallback,
       scaffoldBackgroundColor: palette.canvas,
       canvasColor: palette.canvas,
       cardColor: palette.surface1,
@@ -498,7 +501,8 @@ abstract final class AppTheme {
     );
     return base
         .apply(
-          fontFamily: 'PlusJakartaSans',
+          fontFamily: AppFonts.latin,
+          fontFamilyFallback: AppFonts.japaneseFallback,
           bodyColor: palette.textPrimary,
           displayColor: palette.textPrimary,
         )

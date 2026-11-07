@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="RiLearn - aplikasi belajar bahasa Jepang.">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -31,8 +18,120 @@
 
   <title>RiLearn</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #F3F5F8;
+    }
+    #splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      background-color: #F3F5F8;
+      transition: opacity 300ms ease-out;
+      z-index: 9999;
+    }
+    #splash svg {
+      width: 128px;
+      height: 128px;
+      border-radius: 30px;
+      box-shadow: 0 18px 42px rgba(10, 108, 255, 0.22);
+      animation: splash-pop 900ms cubic-bezier(0.22, 1.28, 0.36, 1) both;
+    }
+    #splash .spinner {
+      width: 22px;
+      height: 22px;
+      border: 2.4px solid rgba(10, 108, 255, 0.2);
+      border-top-color: #0A6CFF;
+      border-radius: 50%;
+      animation: splash-spin 750ms linear infinite;
+    }
+    @keyframes splash-pop {
+      from { opacity: 0; transform: scale(0.88); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes splash-spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (prefers-color-scheme: dark) {
+      html, body, #splash { background-color: #1B1D21; }
+      #splash .spinner {
+        border-color: rgba(10, 108, 255, 0.3);
+        border-top-color: #2D82FF;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="splash" aria-label="Memuat RiLearn">
+    <svg viewBox="0 0 705 705" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+      <g filter="url(#filter0_i_221_155)">
+        <rect width="704.444" height="704.444" rx="108" fill="url(#paint0_linear_221_155)"/>
+      </g>
+      <g filter="url(#filter1_d_221_155)">
+        <path d="M275.869 236.022L276.188 236.022L276.188 236.154L275.64 236.154L275.869 236.022ZM365.598 184.217L275.869 236.022L217.132 236.022L217.132 520.228L276.188 520.228L276.188 424.262L372.892 520.228L446.711 520.228L391.347 465.231C445.604 456.374 487.312 417.249 487.312 348.596C487.312 269.609 432.686 230.116 366.617 230.116C366.277 230.116 365.938 230.117 365.598 230.12L365.598 184.217ZM276.188 286.149L276.188 350.811L337.089 411.343L419.767 411.343L419.767 285.85L365.598 285.85L365.598 337.771L276.188 286.149Z" fill-rule="evenodd" clip-rule="evenodd" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_i_221_155" x="0" y="0" width="704.444" height="704.444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feMorphology radius="3" operator="erode" in="SourceAlpha" result="effect1_innerShadow_221_155"/>
+          <feOffset/>
+          <feGaussianBlur stdDeviation="42.75"/>
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0.582666 0 0 0 0 0.805244 0 0 0 0 1 0 0 0 1 0"/>
+          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_221_155"/>
+        </filter>
+        <filter id="filter1_d_221_155" x="202.632" y="169.716" width="299.18" height="365.011" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset/>
+          <feGaussianBlur stdDeviation="7.25"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_221_155"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_221_155" result="shape"/>
+        </filter>
+        <linearGradient id="paint0_linear_221_155" x1="352.222" y1="0" x2="352.222" y2="704.444" gradientUnits="userSpaceOnUse">
+          <stop/>
+          <stop offset="1" stop-color="#0088FF"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    (function () {
+      var removed = false;
+      function hideSplash() {
+        if (removed) return;
+        removed = true;
+        var splash = document.getElementById('splash');
+        if (!splash) return;
+        splash.style.opacity = '0';
+        setTimeout(function () { splash.remove(); }, 300);
+      }
+
+      window.addEventListener('flutter-first-frame', hideSplash);
+
+      var observer = new MutationObserver(function () {
+        if (document.querySelector('flutter-view, flt-glass-pane')) hideSplash();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      setTimeout(hideSplash, 15000);
+    })();
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

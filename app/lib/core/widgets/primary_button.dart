@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_fonts.dart';
 import '../theme/app_theme.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -44,7 +45,8 @@ class PrimaryButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: const StadiumBorder(),
             textStyle: const TextStyle(
-              fontFamily: 'PlusJakartaSans',
+              fontFamily: AppFonts.latin,
+              fontFamilyFallback: AppFonts.japaneseFallback,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),

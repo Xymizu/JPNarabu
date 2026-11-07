@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../core/navigation/app_router.dart';
+import '../../core/theme/app_fonts.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/app_card.dart';
 import '../../data/repositories/study_store.dart';
@@ -191,13 +192,18 @@ class _FlashcardPageState extends State<FlashcardPage>
     return base * _scale;
   }
 
-  TextStyle _baseStyle(double size, {FontWeight? weight, Color? color}) =>
-      TextStyle(
-        fontSize: size,
-        color: color ?? AppPalette.of(context).textPrimary,
-        fontWeight: weight,
-        height: 1.25,
-      );
+  TextStyle _baseStyle(
+    double size, {
+    FontWeight? weight,
+    Color? color,
+    bool japanese = false,
+  }) => TextStyle(
+    fontSize: size,
+    color: color ?? AppPalette.of(context).textPrimary,
+    fontWeight: weight,
+    height: 1.25,
+    fontFamily: japanese ? AppFonts.japanese : null,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -339,6 +345,7 @@ class _FlashcardPageState extends State<FlashcardPage>
             weight: current.category == CardCategory.kanji
                 ? null
                 : FontWeight.w600,
+            japanese: true,
           ),
         ),
         if (current.category == CardCategory.kotoba &&
@@ -348,7 +355,11 @@ class _FlashcardPageState extends State<FlashcardPage>
             current.reading,
             textAlign: TextAlign.center,
             softWrap: true,
-            style: _baseStyle(24 * _scale, color: AppPalette.of(context).textSecondary),
+            style: _baseStyle(
+              24 * _scale,
+              color: AppPalette.of(context).textSecondary,
+              japanese: true,
+            ),
           ),
         ],
       ],
@@ -366,14 +377,18 @@ class _FlashcardPageState extends State<FlashcardPage>
   List<Widget> _buildBackChildren(StudyCard current) {
     final palette = AppPalette.of(context);
     final settings = widget.store.settings;
-    final readingStyle = _baseStyle(22 * _scale);
+    final readingStyle = _baseStyle(22 * _scale, japanese: true);
     final meaningStyle = _baseStyle(
       28 * _scale,
       weight: current.category == CardCategory.kanji
           ? null
           : FontWeight.w600,
     );
-    final exampleStyle = _baseStyle(16 * _scale, color: palette.textSecondary);
+    final exampleStyle = _baseStyle(
+      16 * _scale,
+      color: palette.textSecondary,
+      japanese: true,
+    );
 
     Widget label(String text) => Text(
       text,
@@ -394,6 +409,7 @@ class _FlashcardPageState extends State<FlashcardPage>
         weight: current.category == CardCategory.kanji
             ? null
             : FontWeight.w600,
+        japanese: true,
       ),
     );
 
